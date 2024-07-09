@@ -14,7 +14,7 @@
                 <li><a href="#" onclick="showView('productos')">Lista productos</a></li>
                 <li><a href="#" onclick="showView('modificar')">Modificar productos</a></li>
                 <li><a href="#" onclick="showView('ventas')">Lista ventas</a></li>
-                <li><a href="#" onclick="showView('clientes')">Lista clientes</a></li>
+                <li><a href="#" onclick="showView('carrito')">Carrito</a></li>
             </ul>
         </nav>
     </header>
@@ -22,15 +22,6 @@
         <div id="productos" class="view">
             <h2>Lista de Productos</h2>
             <div id="product-list"></div>
-            <h2>Agregar Producto</h2>
-            <form id="add-product-form">
-                <input type="text" id="product-name" placeholder="Nombre del producto" required>
-                <input type="text" id="product-description" placeholder="Descripción" required>
-                <input type="number" id="product-price" placeholder="Precio" required>
-                <input type="number" id="product-stock" placeholder="Stock" required>
-                <input type="url" id="product-image" placeholder="URL de la imagen" required>
-                <button type="submit">Agregar Producto</button>
-            </form>
         </div>
         <div id="modificar" class="view">
             <h2>Modificar Productos</h2>
@@ -42,66 +33,40 @@
                 <thead>
                     <tr>
                         <th>Fecha</th>
-                        <th>ID Venta</th>
-                        <th>Cliente</th>
-                        <th>Total</th>
+                        <th>idVenta</th>
+                        <th>Valor</th>
                     </tr>
                 </thead>
                 <tbody id="sales-list">
                     <!-- Aquí se insertarán las filas de ventas -->
                 </tbody>
             </table>
+            <div class="total">
+                <span>Total: $<span id="total-sales">0</span></span>
+            </div>
         </div>
-        <div id="clientes" class="view">
-            <h2>Lista de Clientes</h2>
-            <div id="client-list"></div>
+        <div id="carrito" class="view">
+            <h2>Carrito</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Cantidad</th>
+                        <th>Producto</th>
+                        <th>Valor</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-list">
+                    <!-- Aquí se insertarán las filas del carrito -->
+                </tbody>
+            </table>
+            <div class="total">
+                <button onclick="finalizePurchase()">Finalizar compra</button>
+                <button onclick="cancelPurchase()">Cancelar</button>
+            </div>
         </div>
     </main>
     <script src="js/main.js"></script>
-    <script>
-        const products = [
-            { name: "Producto 1", description: "Descripción del producto 1", price: 100, stock: 50 },
-            { name: "Producto 2", description: "Descripción del producto 2", price: 200, stock: 40 },
-            { name: "Producto 3", description: "Descripción del producto 3", price: 300, stock: 30 },
-            { name: "Producto 4", description: "Descripción del producto 4", price: 400, stock: 20 },
-            { name: "Producto 5", description: "Descripción del producto 5", price: 500, stock: 10 },
-            { name: "Producto 6", description: "Descripción del producto 6", price: 600, stock: 60 },
-            { name: "Producto 7", description: "Descripción del producto 7", price: 700, stock: 70 },
-            { name: "Producto 8", description: "Descripción del producto 8", price: 800, stock: 80 },
-            { name: "Producto 9", description: "Descripción del producto 9", price: 900, stock: 90 },
-            { name: "Producto 10", description: "Descripción del producto 10", price: 1000, stock: 100 },
-            { name: "Producto 11", description: "Descripción del producto 11", price: 1100, stock: 110 },
-            { name: "Producto 12", description: "Descripción del producto 12", price: 1200, stock: 120 },
-            { name: "Producto 13", description: "Descripción del producto 13", price: 1300, stock: 130 },
-            { name: "Producto 14", description: "Descripción del producto 14", price: 1400, stock: 140 },
-            { name: "Producto 15", description: "Descripción del producto 15", price: 1500, stock: 150 },
-            { name: "Producto 16", description: "Descripción del producto 16", price: 1600, stock: 160 },
-            { name: "Producto 17", description: "Descripción del producto 17", price: 1700, stock: 170 },
-            { name: "Producto 18", description: "Descripción del producto 18", price: 1800, stock: 180 },
-            { name: "Producto 19", description: "Descripción del producto 19", price: 1900, stock: 190 },
-            { name: "Producto 20", description: "Descripción del producto 20", price: 2000, stock: 200 }
-        ];
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const productList = document.getElementById('product-list');
-            products.forEach(product => {
-                const productElement = document.createElement('div');
-                productElement.classList.add('product');
-                productElement.innerHTML = `
-                    <h3>${product.name}</h3>
-                    <p>${product.description}</p>
-                    <p>Precio: $${product.price}</p>
-                    <p>Stock: ${product.stock}</p>
-                    <img src="${product.image}" alt="${product.name}">
-                `;
-                productList.appendChild(productElement);
-            });
-        });
-
-        function showView(viewId) {
-            document.querySelectorAll('.view').forEach(view => view.style.display = 'none');
-            document.getElementById(viewId).style.display = 'block';
-        }
-    </script>
 </body>
 </html>
