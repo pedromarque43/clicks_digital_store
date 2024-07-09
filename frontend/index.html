@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Emprendimiento</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Tienda Emprendimiento</h1>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showView('productos')">Lista productos</a></li>
+                <li><a href="#" onclick="showView('modificar')">Modificar productos</a></li>
+                <li><a href="#" onclick="showView('ventas')">Lista ventas</a></li>
+                <li><a href="#" onclick="showView('carrito')">Carrito</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div id="productos" class="view">
+            <h2>Lista de Productos</h2>
+            <div id="product-list"></div>
+        </div>
+        <div id="modificar" class="view">
+            <h2>Modificar Productos</h2>
+            <div id="modify-list"></div>
+        </div>
+        <div id="ventas" class="view">
+            <h2>Lista de Ventas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>idVenta</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody id="sales-list">
+                    <!-- Aquí se insertarán las filas de ventas -->
+                </tbody>
+            </table>
+            <div class="total">
+                <span>Total: $<span id="total-sales">0</span></span>
+            </div>
+        </div>
+        <div id="carrito" class="view">
+            <h2>Carrito</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Cantidad</th>
+                        <th>Producto</th>
+                        <th>Valor</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-list">
+                    <!-- Aquí se insertarán las filas del carrito -->
+                </tbody>
+            </table>
+            <div class="total">
+                <button onclick="finalizePurchase()">Finalizar compra</button>
+                <button onclick="cancelPurchase()">Cancelar</button>
+            </div>
+        </div>
+    </main>
+    <script src="js/main.js"></script>
+</body>
+</html>
